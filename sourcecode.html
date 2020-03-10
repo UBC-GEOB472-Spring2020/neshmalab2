@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Leaflet Exercise</title>
+	<meta charset="utf-8" />
+
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />	
+	<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+
+
+	
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>	
+	
+</head>
+<body>
+
+  <div id="mapid" style="width: 600px; height: 400px;"></div>
+
+  <div id="controls" style="margin: 15px;">
+    <div style="width:450px;height:45px;border:2px solid #000;font-family:verdana;font-size:16px;;"> This map displays schools in the City of Birmingham! Hover over each point to see the name of each school.</div>
+
+
+     
+  <script>
+    
+    var map = L.map('mapid',
+                    { 
+   center: [52.48142, -1.89983],
+   zoom: 10.5
+    }  
+   );
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'pk.eyJ1IjoibmVzaG1hIiwiYSI6ImNrNnExM3MzdjB5NnIzZm1sM2ozNDRheGkifQ.X2iwU5GDksKl6Tx3SEYyKg'
+}).addTo(map);	
+
+    var schoolMarkerOptions = {
+    	radius: 4,
+    	fillColor: "#FF8000",
+    	color: "#CC6600",
+    	weight: 1.5,
+    	opacity: 1,
+    	fillOpacity: 1,
+		};
+    
+    function onEachschool(feature, layer) {
+       
+       if (feature.properties && feature.properties.school_name) {
+          layer.bindTooltip(feature.properties.school_name);
+       }
+    }
+    $.getJSON("https://raw.githubusercontent.com/vitorbaptista/birmingham_schools/master/data/birmingham_schools.geojson",
+             function(data){
+
+    L.geoJSON(data, {
+   	pointToLayer: function (feature, latlng) {
+    return L.circleMarker(
+    latlng,
+    schoolMarkerOptions
+        );
+    },
+       onEachFeature: onEachschool
+      }
+     ).addTo(map);});
+
+ 
+  </script>
+
+</body>
+</html>
