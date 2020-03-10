@@ -1,7 +1,7 @@
 # Schools in the City of Birmingham
 
 ### Screenshot of my map: 
-![](image)
+![](map.png)
 
 Link to my map: https://editor.p5js.org/neshma/present/lgulBCJ3
 
@@ -13,3 +13,6 @@ This map incorporates a hover over feature, which displays the name of the schoo
 I used an orange colour for the circle point, with a radius of 4. I kept the opacity of the points at 1, but also made sure to darken the weight of the circle border so that each point could be distinguished easily. My choice of orange was based on the fact that it stands out, but it not too bright. This orange colour easily fits in with the overall aesthetic of the map, and works to form a visual hierarchy, with the school data being the most important layer. I used a tilelayer which displays roads, water and land use, as well as place names and points of interest. The colours used in this basemap are presented clearly, and are not overly muted.
 
 I initially intended to include more interactivity in this map. This interactivity would have included a search box, allowing for the user to search for the type of school they wished to see displayed on the map. However, whilst doing this, I came across some issues within my code which I could not resolve in the time I had. As a result, I kept this map fairly simple, but clean. However, I intend to continue to work on this code to further my learning, and optimise the use of this map.
+
+### Resources used:
+https://raw.githubusercontent.com/vitorbaptista/birmingham_schools/master/data/birmingham_schools.geojson
